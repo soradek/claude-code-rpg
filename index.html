@@ -764,7 +764,7 @@ html,body{
       <h1>⚔ CLAUDE CODE: KRONIKI TERMINALA ⚔</h1>
     </div>
     <div class="subtitle">— Interaktywny Samouczek RPG —</div>
-    <div class="version">v2.0<br>Radosław Sobczak</div>
+    <div class="version">v2.0<br>Radosław Sobczak<br><span id="visit-counter" style="color:var(--gold);font-size:7px;">👁 ... graczy</span></div>
   </div>
 
   <!-- GAME GRID -->
@@ -1724,6 +1724,17 @@ function restartGame() {
   for(let i=0;i<4;i++){items[i].textContent=def[i];items[i].style.color='';}
   gotoNode('intro_0');
 }
+
+// ── VISITOR COUNTER ──
+(function(){
+  const BASE = 67;
+  const key = 'ccrpg_visits';
+  const stored = parseInt(localStorage.getItem(key) || '0', 10);
+  const count = Math.max(stored, BASE) + 1;
+  localStorage.setItem(key, count);
+  const el = document.getElementById('visit-counter');
+  if (el) el.textContent = '👁 ' + count + ' graczy';
+})();
 
 // ── START ──
 gotoNode('intro_0');
